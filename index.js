@@ -11,5 +11,10 @@ app.get("/", function(req, res) {
      req.connection.remoteAddress ||
      req.socket.remoteAddress ||
      req.connection.socket.remoteAddress;
-  res.send(ip);
+  var result = {
+    "ipaddress": ip,
+    "language": '',
+    "software": ''
+  }
+  res.send(result);
 });
