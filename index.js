@@ -7,5 +7,9 @@ app.listen(port, function() {
 });
 
 app.get("/", function(req, res) {
-  res.send(req.ips);
+  var ip = req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
+  res.send(ip);
 });
