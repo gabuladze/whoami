@@ -12,13 +12,13 @@ app.get("/", function(req, res) {
      req.socket.remoteAddress ||
      req.connection.socket.remoteAddress;
   var software = req.headers['user-agent']
-      .match(/\(([^()]+)\)/g)[0]
-      .match(/[^()]/g).join("");
+      .match(/\(([^()]+)\)/g)[0] // match characters inbetween parantheses
+      .match(/[^()]/g).join(""); // remove paramtheses and join the strings
   var language = req.headers['accept-language'].match(/^[^,]+/g)[0];
   var result = {
     "ipaddress": ip,
     "language": language,
     "software": software
   }
-  res.send(result);
+  res.json(result);
 });
